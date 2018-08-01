@@ -1,3 +1,6 @@
+@import '~antd/dist/antd.css';
+@import "Main.css";
+@import "Register.css";
 .App {
   text-align: center;
 }
@@ -11,7 +14,6 @@
 .App-header {
   background-color: #222;
   height: 60px;
-  padding: 20px;
   color: white;
 }
 
@@ -19,6 +21,7 @@
     font-size: 1.5em;
     float: left;
     color: #61dafb;
+    padding-top: 16px;
 }
 
 .App-intro {
