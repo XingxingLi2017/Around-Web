@@ -27,11 +27,15 @@ export class Gallery extends Component {
                 )
             }
         })
-        return (<GridGallery
-            images={images}
-            enableImageSelection={false}
-            backdropClosesModal
-        />)
+        return (
+            <div style={wrapperStyle}>
+                <GridGallery
+                    images={images}
+                    enableImageSelection={false}
+                    backdropClosesModal
+                />
+            </div>
+        )
     }
 }
 
@@ -45,4 +49,11 @@ const captionStyle = {
     color: "white",
     padding: "2px",
     fontSize: "90%"
+};
+const wrapperStyle = {
+    display: "block",
+    minHeight: "1px",
+    width: "100%",
+    border: "1px solid #ddd",
+    overflow: "auto"
 };
