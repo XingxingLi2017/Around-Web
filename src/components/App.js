@@ -22,14 +22,14 @@ class App extends Component {
             isLoggedIn: false
         });
     }
-  render() {
-    return (
-      <div className="App">
-          <Header isLoggedIn = {this.state.isLoggedIn} handleLogout={this.handleLogout}/>
-          <Main isLoggedIn = {this.state.isLoggedIn} handleLogin = {this.handleLogin} />
-      </div>
-    );
-  }
+    render() {
+        return (
+            <div className="App">
+                <Header isLoggedIn = {this.state.isLoggedIn} handleLogout={this.handleLogout}/>
+                <Main isLoggedIn = {this.state.isLoggedIn} handleLogin = {this.handleLogin} />
+            </div>
+        );
+    }
 }
 
 export default App;
