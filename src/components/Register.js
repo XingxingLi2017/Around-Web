@@ -28,7 +28,6 @@ class RegistrationForm extends React.Component {
                     this.props.history.push("/login");
                 }, (response) => {
                     message.error(response.responseText);
-
                 }).catch((error) => {
                     console.log(error);
                 });

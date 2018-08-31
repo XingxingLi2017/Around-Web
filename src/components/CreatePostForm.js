@@ -27,11 +27,14 @@ class CreatePostForm extends React.Component {
                 <FormItem
                     {...formItemLayout}
                     label="Message">
-                    {getFieldDecorator('message', {
-                        rules: [{ required: true, message: 'Please input a message.' }],
-                    })(
-                        <Input />
-                    )}
+
+                    {getFieldDecorator('message',
+                        {rules: [{
+                            required: true,
+                                message: 'Please input a message.'
+                        }]})(<Input />)
+                    }
+
                 </FormItem>
                 <FormItem
                     {...formItemLayout}
@@ -57,4 +60,5 @@ class CreatePostForm extends React.Component {
         );
     }
 }
+
 export const WrappedCreatePostForm = Form.create()(CreatePostForm);
