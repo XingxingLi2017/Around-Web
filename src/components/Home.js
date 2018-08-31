@@ -3,7 +3,7 @@ import $ from 'jquery';
 import { Tabs, Button, Spin } from 'antd';
 import { GEO_OPTIONS, POS_KEY, AUTH_PREFIX, TOKEN_KEY, API_ROOT } from '../constants';
 import {Gallery} from "./Gallery"
-
+import {CreatePostButton} from "./CreatePostButton"
 
 const TabPane = Tabs.TabPane;
 
@@ -94,6 +94,7 @@ export class Home extends React.Component {
     }
 
     render() {
+        const operations = <CreatePostButton />
         return (
             <Tabs tabBarExtraContent={operations} className="main-tabs">
                 <TabPane tab="Post" key="1">{this.getGalleryPanelContent()}</TabPane>
