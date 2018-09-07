@@ -8,12 +8,15 @@ import { WrappedAroundMap } from './AroundMap'
 
 const TabPane = Tabs.TabPane;
 
+const RadioGroup = Radio.Group;
+
 export class Home extends React.Component {
     state = {
         loadingGeoLocation: false,
         loadingPost: false,
         error: '',
         posts: [],
+        topic: 'around',
     }
 
     componentDidMount() {
@@ -50,8 +53,9 @@ export class Home extends React.Component {
         this.setState({ loadingPosts: true, error: '' });
         const { lat, lon } = location ? location : JSON.parse(localStorage.getItem(POS_KEY));
         const radius = range ? range : 20;
+        const endPoint = this.state.topic === 'around' ? 'search' : 'cluster'
         $.ajax({
-            url: `${API_ROOT}/search?lat=${lat}&lon=${lon}&range=${radius}`,
+            url: `${API_ROOT}/${endPoint}?lat=${lat}&lon=${lon}&range=${radius}&term=${this.state.topic}`,
             method: 'GET',
             headers: {
                 Authorization: `${AUTH_PREFIX} ${localStorage.getItem(TOKEN_KEY)}`,
@@ -121,11 +125,22 @@ export class Home extends React.Component {
 
     }
 
+    onTopicChange = (e) => {
+        this.setState({ topic: e.target.value }, this.loadNearbyPosts);
+    }
+
+
     render() {
-        const operations = <CreatePostButton loadNearbyPosts={this.loadNearbyPosts}/>;
+        const TabPane = Tabs.TabPane;
+        const operations = <CreatePostButton loadNearbyPost={this.loadNearbyPost}/>;
 
         return (
             <div className="main-tabs">
+                <RadioGroup className="topic-radio-group" value={this.state.topic} onChange={this.onTopicChange}>
+                    <Radio value="around">Posts Around Here</Radio>
+                    <Radio value="face">Faces Around The World</Radio>
+                </RadioGroup>
+
                 <Tabs tabBarExtraContent={operations}>
                     <TabPane tab="Image Posts" key="1">
                         {this.getGalleryPanelContent('images')}
